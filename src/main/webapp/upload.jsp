@@ -1,4 +1,5 @@
 <%@ page import="com.chrisgward.pex2gm.YamlProcesser" %>
+<%@ page import="com.chrisgward.pex2gm.PexGroups" %>
 <%--
   Created by IntelliJ IDEA.
   User: 8381111
@@ -8,14 +9,5 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    YamlProcesser processor = new YamlProcesser(request.getParameter("yaml")); %>
-<%= processor.getGroups().getGroups().toString() %>
-<html>
-<head>
-    <title>Processing...</title>
-</head>
-<body>
-    Your file is being processed. Please wait.
-
-</body>
-</html>
+    YamlProcesser processor = new YamlProcesser(request.getParameter("yaml"), PexGroups.class); %>
+<%= processor.newConfig %>

@@ -1,0 +1,70 @@
+package com.chrisgward.pex2gm;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+
+public class GM
+{
+	public static class GlobalGroups {
+		public static class Group {
+			@Getter @Setter List<String> permissions = new ArrayList<String>();
+		}
+		@Getter @Setter Map<String,Group> globalgroups = new HashMap<String, Group>();
+	}
+
+	public static class Groups {
+		public static class Group {
+			@Getter @Setter Map<String, Object> info = new HashMap<String, Object>();
+			Boolean dfault;
+			@Getter @Setter List<String> permissions;
+			@Getter @Setter List<String> inheritance;
+		}
+		@Getter @Setter Map<String, Group> groups = new HashMap<String, Group>();
+	}
+
+	public static class Users {
+		public static class User {
+			@Getter @Setter List<String> permissions;
+			@Getter @Setter String group;
+			@Getter @Setter List<String> subgroups;
+			@Getter @Setter Map<String, Object> info;
+		}
+
+		@Getter @Setter public Map<String, User> users;
+	}
+
+	public static class Config {
+		public static class Settings {
+			public static class Config_ {
+				@Getter @Setter Boolean opOverrides = true;
+				@Getter @Setter Boolean validate_toggle = true;
+			}
+
+			public static class Data {
+				public static class Save {
+					@Getter @Setter Integer minutes = 10;
+					@Getter @Setter Integer hours = 24;
+				}
+
+				@Getter @Setter Save save = new Save();
+			}
+
+			public static class Logging {
+				@Getter @Setter Level level = Level.INFO;
+			}
+
+			@Getter @Setter Config_ config = new Config_();
+			@Getter @Setter Data data = new Data();
+			@Getter @Setter Logging logging = new Logging();
+			@Getter @Setter Map<String, Map<String, List<String>>> mirrors;
+		}
+
+		@Getter @Setter Settings settings = new Settings();
+	}
+}
