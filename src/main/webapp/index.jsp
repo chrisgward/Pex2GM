@@ -17,7 +17,7 @@
         1. Paste in your PermissionsEx permissions.yml and press submit.<br/>
         2. ???<br/>
         3. Profit!
-        <form method="post" action="/upload.jsp">
+        <form method="post" action="/upload/">
             <textarea id="yaml" name="yaml"></textarea>
             <input type="submit">
         </form>

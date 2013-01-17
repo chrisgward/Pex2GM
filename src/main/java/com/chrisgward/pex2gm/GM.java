@@ -13,7 +13,7 @@ public class GM
 {
 	public static class GlobalGroups {
 		public static class Group {
-			@Getter @Setter List<String> permissions = new ArrayList<String>();
+			@Getter @Setter String[] permissions;
 		}
 		@Getter @Setter Map<String,Group> globalgroups = new HashMap<String, Group>();
 	}
@@ -21,19 +21,33 @@ public class GM
 	public static class Groups {
 		public static class Group {
 			@Getter @Setter Map<String, Object> info = new HashMap<String, Object>();
-			Boolean dfault;
-			@Getter @Setter List<String> permissions;
-			@Getter @Setter List<String> inheritance;
+
+			public Group() {
+				info.put("prefix", "");
+				info.put("build", true);
+				info.put("suffix", "");
+			}
+
+			Boolean dfault = false;
+			public boolean getDefault() {
+				return dfault;
+			}
+
+			public void setDefault(boolean dfault) {
+				this.dfault = dfault;
+			}
+			@Getter @Setter String[] permissions = new String[0];
+			@Getter @Setter String[] inheritance = new String[0];
 		}
 		@Getter @Setter Map<String, Group> groups = new HashMap<String, Group>();
 	}
 
 	public static class Users {
 		public static class User {
-			@Getter @Setter List<String> permissions;
+			@Getter @Setter String[] permissions = new String[0];
 			@Getter @Setter String group;
-			@Getter @Setter List<String> subgroups;
-			@Getter @Setter Map<String, Object> info;
+			@Getter @Setter String[] subgroups = new String[0];
+			@Getter @Setter Map<String, Object> info = new HashMap<String, Object>();
 		}
 
 		@Getter @Setter public Map<String, User> users;
@@ -62,7 +76,14 @@ public class GM
 			@Getter @Setter Config_ config = new Config_();
 			@Getter @Setter Data data = new Data();
 			@Getter @Setter Logging logging = new Logging();
-			@Getter @Setter Map<String, Map<String, List<String>>> mirrors;
+			@Getter @Setter Map<String, Map<String, String[]>> mirrors = new HashMap<String, Map<String, String[]>>();
+			public Settings()
+			{
+				Map<String, String[]> mirrorlist = new HashMap<String, String[]>();
+				mirrorlist.put("world_nether", new String[]{"users", "groups"});
+				mirrorlist.put("world_the_end", new String[]{"users", "groups"});
+				mirrors.put("world", mirrorlist);
+			}
 		}
 
 		@Getter @Setter Settings settings = new Settings();
