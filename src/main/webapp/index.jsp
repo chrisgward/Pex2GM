@@ -19,7 +19,9 @@
         3. Profit!
         <form method="post" action="/upload/">
             <textarea id="yaml" name="yaml"></textarea>
-            <input type="submit">
+            <input type="submit" value="Submit">
         </form>
+
+        <p><a href="https://github.com/chrisgward/Pex2GM">Source Code</a> - Written by Chris Ward</p>
     </body>
 </html>
