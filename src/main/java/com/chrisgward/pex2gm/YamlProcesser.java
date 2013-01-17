@@ -19,43 +19,31 @@ import java.util.zip.ZipOutputStream;
 
 public class YamlProcesser implements Servlet
 {
-	public String newConfig;
-	public String newGlobalGroups;
-
-
-	@Override
 	public void init(ServletConfig servletConfig) throws ServletException
 	{
 		//To change body of implemented methods use File | Settings | File Templates.
 	}
 
-	@Override
 	public ServletConfig getServletConfig()
 	{
 		return null;  //To change body of implemented methods use File | Settings | File Templates.
 	}
 
-	@Override
 	public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException
 	{
 		HttpServletResponse response = (HttpServletResponse)servletResponse;
-		response.setHeader("Content-Disposition", "attachment; filename=pex2gm.zip");
-		response.setContentType("application/zip");
 
 		DumperOptions options = new DumperOptions();
 		options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
 		Yaml yaml = new Yaml(options);
 		Converter convert = yaml.loadAs(servletRequest.getParameter("yaml"), PexGroups.class);
 
-		newConfig = yaml.dump(convert.generateConfig()).split("\n", 2)[1];
-		newGlobalGroups = yaml.dump(convert.generateGlobalGroups()).split("\n", 2)[1];
-
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ZipOutputStream zos = new ZipOutputStream(baos);
 		zos.putNextEntry(new ZipEntry("config.yml"));
-		zos.write(newConfig.getBytes());
+		zos.write(yaml.dump(convert.generateConfig()).split("\n", 2)[1].getBytes());
 		zos.putNextEntry(new ZipEntry("globalgroups.yml"));
-		zos.write(newGlobalGroups.getBytes());
+		zos.write(yaml.dump(convert.generateGlobalGroups()).split("\n", 2)[1].getBytes());
 
 
 		Map<String, GM.Groups> groupsList = convert.generateGroups();
@@ -73,16 +61,16 @@ public class YamlProcesser implements Servlet
 		}
 
 		zos.close();
+		response.setHeader("Content-Disposition", "attachment; filename=pex2gm.zip");
+		response.setContentType("application/zip");
 		response.getOutputStream().write(baos.toByteArray(), 0, baos.toByteArray().length);
 	}
 
-	@Override
 	public String getServletInfo()
 	{
 		return null;  //To change body of implemented methods use File | Settings | File Templates.
 	}
 
-	@Override
 	public void destroy()
 	{
 		//To change body of implemented methods use File | Settings | File Templates.
