@@ -149,7 +149,7 @@ public class PexGroups implements Converter
 		@Getter @Setter Map<String, Object> options;
 		@Getter @Setter String prefix;
 		@Getter @Setter String suffix;
-		Boolean dfault;
+		boolean dfault = false;
 		public void setDefault(boolean dfault) {
 			this.dfault = dfault;
 		}
