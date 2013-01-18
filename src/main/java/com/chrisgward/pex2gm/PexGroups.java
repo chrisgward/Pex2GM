@@ -173,6 +173,7 @@ public class PexGroups implements Converter
 		@Getter @Setter String suffix;
 		@Getter @Setter String[] group;
 		@Getter @Setter Map<String, World> worlds;
+		@Getter @Setter Map<String, Object> options;
 
 		public static class World {
 			@Getter @Setter String[] permissions;
