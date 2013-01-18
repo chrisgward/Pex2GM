@@ -12,10 +12,17 @@ public class PexGroups implements Converter
 	{
 		Map<String, GM.Users> users = new HashMap<String, GM.Users>();
 		ArrayList<String> worldList = new ArrayList<String>();
+		String dfault = null;
 		for(Map.Entry<String, Group> pexgroup : getGroups().entrySet())
+		{
+			if(pexgroup.getValue().getDefault())
+			{
+				dfault = pexgroup.getKey();
+			}
 			for(String s : pexgroup.getValue().getWorlds().keySet())
 				if(!worldList.contains(s))
 					worldList.add(s);
+		}
 		for(Map.Entry<String, Map<String, String[]>> world : generateConfig().getSettings().getMirrors().entrySet())
 		{
 			if(!worldList.contains(world.getKey()))
@@ -32,8 +39,9 @@ public class PexGroups implements Converter
 				GM.Users.User user = new GM.Users.User();
 				if(pexuser.getValue().getWorlds() != null && pexuser.getValue().getWorlds().get(world) != null && pexuser.getValue().getWorlds().get(world).getPermissions() != null)
 					user.setPermissions(pexuser.getValue().getWorlds().get(world).getPermissions());
-				user.setGroup(pexuser.getValue().getGroup()[0]);
-				user.setSubgroups(Arrays.copyOfRange(pexuser.getValue().getGroup(), 1, pexuser.getValue().getGroup().length));
+				user.setGroup(pexuser.getValue().getGroup() == null ? dfault : pexuser.getValue().getGroup()[0]);
+				if(pexuser.getValue().getGroup() != null)
+					user.setSubgroups(Arrays.copyOfRange(pexuser.getValue().getGroup(), 1, pexuser.getValue().getGroup().length));
 				if(pexuser.getValue().getPrefix() != null)
 					user.getInfo().put("prefix", pexuser.getValue().getPrefix());
 				if(pexuser.getValue().getSuffix() != null)
