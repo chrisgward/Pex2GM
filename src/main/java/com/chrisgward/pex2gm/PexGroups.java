@@ -7,7 +7,6 @@ import java.util.*;
 
 public class PexGroups implements Converter
 {
-	@Override
 	public Map<String, GM.Users> generateUsers()
 	{
 		Map<String, GM.Users> users = new HashMap<String, GM.Users>();
@@ -55,7 +54,6 @@ public class PexGroups implements Converter
 		return users;
 	}
 
-	@Override
 	public GM.Config generateConfig()
 	{
 		GM.Config config = new GM.Config();
@@ -85,7 +83,6 @@ public class PexGroups implements Converter
 		return config;
 	}
 
-	@Override
 	public GM.GlobalGroups generateGlobalGroups()
 	{
 		GM.GlobalGroups groups = new GM.GlobalGroups();
@@ -100,7 +97,6 @@ public class PexGroups implements Converter
 		return groups;
 	}
 
-	@Override
 	public Map<String, GM.Groups> generateGroups()
 	{
 
@@ -158,6 +154,12 @@ public class PexGroups implements Converter
 		@Getter @Setter String prefix;
 		@Getter @Setter String suffix;
 		boolean dfault = false;
+
+		public void setInfo(Map<String, Object> info)
+		{
+			throw new RuntimeException("The info: block is not part of a PermissionsEx file. It belongs to GroupManager. This means your file should already be compatible with GroupManager. ");
+		}
+
 		public void setDefault(boolean dfault) {
 			this.dfault = dfault;
 		}
@@ -174,6 +176,10 @@ public class PexGroups implements Converter
 		@Getter @Setter String[] group;
 		@Getter @Setter Map<String, World> worlds;
 		@Getter @Setter Map<String, Object> options;
+		public void setInfo(Map<String, Object> info)
+		{
+			throw new RuntimeException("The info: block is not part of a PermissionsEx file. It belongs to GroupManager. This means your file should already be compatible with GroupManager. ");
+		}
 
 		public static class World {
 			@Getter @Setter String[] permissions;
