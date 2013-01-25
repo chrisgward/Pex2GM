@@ -93,7 +93,7 @@ public class PexGroups implements Converter
 			group.setPermissions(pexgroup.getValue().getPermissions());
 			groupList.put("g:" + pexgroup.getKey(), group);
 		}
-		groups.setGlobalgroups(groupList);
+		groups.setGroups(groupList);
 		return groups;
 	}
 
