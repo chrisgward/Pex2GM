@@ -15,7 +15,7 @@ public class GM
 		public static class Group {
 			@Getter @Setter String[] permissions;
 		}
-		@Getter @Setter Map<String,Group> globalgroups = new HashMap<String, Group>();
+		@Getter @Setter Map<String,Group> groups = new HashMap<String, Group>();
 	}
 
 	public static class Groups {
