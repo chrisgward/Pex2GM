@@ -127,6 +127,7 @@ public class PexGroups implements Converter
 					group.getInfo().put("prefix", pexgroup.getValue().getPrefix());
 				if(pexgroup.getValue().getSuffix() != null)
 					group.getInfo().put("suffix", pexgroup.getValue().getSuffix());
+				group.getInfo().put("build", pexgroup.getValue().isBuild());
 				ArrayList<String> inheritance = new ArrayList<String>();
 				if(pexgroup.getValue().getInheritance() != null)
 					for(String s : pexgroup.getValue().getInheritance())
@@ -154,6 +155,7 @@ public class PexGroups implements Converter
 		@Getter @Setter String prefix;
 		@Getter @Setter String suffix;
 		boolean dfault = false;
+		@Getter @Setter boolean build = false;
 
 		public void setInfo(Map<String, Object> info)
 		{
