@@ -36,5 +36,6 @@
         </form>
 
         <p><a href="https://github.com/chrisgward/Pex2GM">Source Code</a> - Written by Chris Ward</p>
+        <p>If you are having trouble with this website, please let me know through email <a href="mailto:chris@chrisgward.com">here</a>.</p>
     </body>
 </html>
