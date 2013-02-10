@@ -73,7 +73,7 @@ public class YamlProcesser implements Servlet
 		}
 
 		zos.close();
-		response.setHeader("Content-Disposition", "attachment; filename=pex2gm.zip");
+		response.setHeader("Content-Disposition", "attachment; filename=convert2gm.zip");
 		response.setContentType("application/zip");
 		response.getOutputStream().write(baos.toByteArray(), 0, baos.toByteArray().length);
 	}

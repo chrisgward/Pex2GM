@@ -31,7 +31,7 @@
     <div id="wrap">
         <h1>Well... this is awkward (HTTP 500)</h1>
         <% if (tab) { %>
-            <p>Your YAML file could not be parsed by Pex2GM. This is caused by the use of tabs in your YML file.<br/>
+            <p>Your YAML file could not be parsed by Convert2GM. This is caused by the use of tabs in your YML file.<br/>
             Please use <a href="http://yaml-online-parser.appspot.com/">a yaml parser</a> to find and repair the problem, then try again.<br/>
             Details on where the error is can be found in the error stack below.</p>
 
@@ -41,7 +41,7 @@
                 <input type="submit" value="Submit">
             </form> </p>
 
-            <p>If you are getting this error regularly or do not understand what it means, please send an email with the error stack below and your yaml file to <a href="mailto:chris+pex2gm@chrisgward.com">chris+pex2gm@chrisgward.com</a> and I will get back to you within the next 2-3 days.</p>
+            <p>If you are getting this error regularly or do not understand what it means, please send an email with the error stack below and your yaml file to <a href="mailto:chris+convert2gm@chrisgward.com">chris+convert2gm@chrisgward.com</a> and I will get back to you within the next 2-3 days.</p>
             </p>
             <p>&nbsp</p>
             <h2>Error Stack:</h2>
@@ -49,11 +49,11 @@
                 t.printStackTrace(new PrintWriter(writer));%>
             <pre><%= t.getClass().getName() %> was thrown <%= writer %></pre>
         <% } else { %>
-            <p>Congratulations, you broke Pex2GM :D This is usually caused by malformed YML code. Please make sure that your code is valid using <a href="http://yaml-online-parser.appspot.com/">a yaml parser</a> and try again. Also, make sure that you selected the correct permissions input type next to the submit button.<br/>
+            <p>Congratulations, you broke Convert2GM :D This is usually caused by malformed YML code. Please make sure that your code is valid using <a href="http://yaml-online-parser.appspot.com/">a yaml parser</a> and try again. Also, make sure that you selected the correct permissions input type next to the submit button.<br/>
             <h2>Error Message:</h2>
             <pre><%= t.getMessage() %></pre></p>
 
-            <p>If you are getting this error regularly or do not understand what it means, please send an email with the error stack below and your yaml file to <a href="mailto:chris+pex2gm@chrisgward.com">chris+pex2gm@chrisgward.com</a> and I will get back to you within the next 2-3 days.</p>
+            <p>If you are getting this error regularly or do not understand what it means, please send an email with the error stack below and your yaml file to <a href="mailto:chris+convert2gm@chrisgward.com">chris+convert2gm@chrisgward.com</a> and I will get back to you within the next 2-3 days.</p>
             </p>
             <p>&nbsp</p>
             <h2>Error Stack:</h2>
