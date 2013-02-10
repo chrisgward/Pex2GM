@@ -1,5 +1,7 @@
-package com.chrisgward.pex2gm;
+package com.chrisgward.pex2gm.converters;
 
+import com.chrisgward.pex2gm.Converter;
+import com.chrisgward.pex2gm.GM;
 import lombok.Getter;
 import lombok.Setter;
 

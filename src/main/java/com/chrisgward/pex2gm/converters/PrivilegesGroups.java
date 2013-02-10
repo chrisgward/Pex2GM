@@ -1,5 +1,7 @@
-package com.chrisgward.pex2gm;
+package com.chrisgward.pex2gm.converters;
 
+import com.chrisgward.pex2gm.Converter;
+import com.chrisgward.pex2gm.GM;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PrivilegesGroups implements Converter{
+public class PrivilegesGroups implements Converter {
     public Map<String, GM.Users> generateUsers() {
         GM.Users users = new GM.Users();
         for(Map.Entry<String, List<String>> entry : getGroups().entrySet()) {
