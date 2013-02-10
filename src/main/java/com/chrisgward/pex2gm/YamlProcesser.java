@@ -1,20 +1,17 @@
 package com.chrisgward.pex2gm;
 
+import com.chrisgward.pex2gm.converters.Converter;
+import com.chrisgward.pex2gm.converters.PexGroups;
+import com.chrisgward.pex2gm.converters.PrivilegesGroups;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
-import org.yaml.snakeyaml.nodes.Tag;
-import org.yaml.snakeyaml.representer.Representer;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.JspWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Map;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 public class YamlProcesser implements Servlet
