@@ -11,7 +11,7 @@ import java.util.Map;
 public class BPermsGroups implements Converter {
     public Map<String, GM.Users> generateUsers() {
         GM.Users users = new GM.Users();
-        for(Map.Entry<String, List<String>> entry : getGroups().entrySet()) {
+        for (Map.Entry<String, List<String>> entry : getGroups().entrySet()) {
             GM.Users.User user = new GM.Users.User();
             user.setPermissions(entry.getValue().toArray(new String[entry.getValue().size()]));
             users.getUsers().put(entry.getKey(), user);
@@ -27,7 +27,7 @@ public class BPermsGroups implements Converter {
 
     public GM.GlobalGroups generateGlobalGroups() {
         GM.GlobalGroups globalGroups = new GM.GlobalGroups();
-        for(Map.Entry<String, List<String>> entry : getGroups().entrySet()) {
+        for (Map.Entry<String, List<String>> entry : getGroups().entrySet()) {
             GM.GlobalGroups.Group group = new GM.GlobalGroups.Group();
             group.setPermissions(entry.getValue().toArray(new String[entry.getValue().size()]));
             globalGroups.getGroups().put(entry.getKey(), group);
@@ -38,14 +38,13 @@ public class BPermsGroups implements Converter {
     public Map<String, GM.Groups> generateGroups() {
         GM.Groups groups = new GM.Groups();
         boolean defaultset = false;
-        for(Map.Entry<String, List<String>> entry : getGroups().entrySet()) {
+        for (Map.Entry<String, List<String>> entry : getGroups().entrySet()) {
             GM.Groups.Group group = new GM.Groups.Group();
-            if(!defaultset)
-            {
+            if (!defaultset) {
                 group.setDefault(true);
                 defaultset = true;
             }
-            group.setPermissions(new String[] {});
+            group.setPermissions(new String[]{});
             group.setInheritance(new String[]{"g:" + entry.getKey()});
             groups.getGroups().put(entry.getKey(), group);
         }
@@ -54,6 +53,10 @@ public class BPermsGroups implements Converter {
         return output;
     }
 
-    @Getter @Setter HashMap<String, List<String>> groups;
-    @Getter @Setter HashMap<String, List<String>> players;
+    @Getter
+    @Setter
+    HashMap<String, List<String>> groups;
+    @Getter
+    @Setter
+    HashMap<String, List<String>> players;
 }
