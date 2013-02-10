@@ -3,6 +3,7 @@ package com.chrisgward.pex2gm;
 import com.chrisgward.pex2gm.converters.BPermsGroups;
 import com.chrisgward.pex2gm.converters.Converter;
 import com.chrisgward.pex2gm.converters.PexGroups;
+import com.chrisgward.pex2gm.converters.PrivilegesConverter;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
@@ -41,6 +42,8 @@ public class YamlProcesser implements Servlet
                 convert = yaml.loadAs(servletRequest.getParameter("yaml"), BPermsGroups.class);
             else if (method.equalsIgnoreCase("pex") || method.equalsIgnoreCase("permissionsex"))
                 convert = yaml.loadAs(servletRequest.getParameter("yaml"), PexGroups.class);
+            else if (method.equalsIgnoreCase("privs") || method.equalsIgnoreCase("privileges"))
+                convert = new PrivilegesConverter(servletRequest.getParameter("users"), servletRequest.getParameter("groups"), yaml);
             else
                 throw new IllegalArgumentException("You didn't specify a permissions file type!");
         }

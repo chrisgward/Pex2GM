@@ -49,18 +49,15 @@ Throwable t = (Throwable) request.getAttribute("javax.servlet.error.exception");
             <p>Congratulations, you broke Pex2GM :D This is usually caused by malformed YML code. Please make sure that your code is valid using <a href="http://yaml-online-parser.appspot.com/">a yaml parser</a> and try again. Also, make sure that you selected the correct permissions input type next to the submit button.<br/>
             <h2>Error Message:</h2>
             <pre><%= t.getMessage() %></pre></p>
-        <p>Want to try again?
-        <form method="post" action="/upload/">
-            <textarea id="yaml" name="yaml" style="height: 50px"><%= request.getParameter("yaml")%></textarea>
-            <input type="submit" value="Submit">
-        </form> </p>
 
-        <p>If you are getting this error regularly or do not understand what it means, please send an email with the error stack below and your yaml file to <a href="mailto:chris+pex2gm@chrisgward.com">chris+pex2gm@chrisgward.com</a> and I will get back to you within the next 2-3 days.</p>
-        </p>
-        <p>&nbsp</p>
-        <h2>Error Stack:</h2>
-        <%StringWriter writer = new StringWriter();
-            t.printStackTrace(new PrintWriter(writer));%>
+            <p>If you are getting this error regularly or do not understand what it means, please send an email with the error stack below and your yaml file to <a href="mailto:chris+pex2gm@chrisgward.com">chris+pex2gm@chrisgward.com</a> and I will get back to you within the next 2-3 days.</p>
+            </p>
+            <p>&nbsp</p>
+            <h2>Error Stack:</h2>
+            <%
+                StringWriter writer = new StringWriter();
+                t.printStackTrace(new PrintWriter(writer));
+            %>
             <pre><%= t.getClass().getName() %> was thrown <%= writer %></pre>
         <% } %>
     </div>
