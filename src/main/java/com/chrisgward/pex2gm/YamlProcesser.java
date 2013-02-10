@@ -36,10 +36,16 @@ public class YamlProcesser implements Servlet
         String method = servletRequest.getParameter("method");
         Converter convert;
 
-        if(method != null && method.equalsIgnoreCase("bperms") || method.equalsIgnoreCase("bpermissions"))
-            convert = yaml.loadAs(servletRequest.getParameter("yaml"), BPermsGroups.class);
+        if(method != null) {
+            if(method.equalsIgnoreCase("bperms") || method.equalsIgnoreCase("bpermissions"))
+                convert = yaml.loadAs(servletRequest.getParameter("yaml"), BPermsGroups.class);
+            else if (method.equalsIgnoreCase("pex") || method.equalsIgnoreCase("permissionsex"))
+                convert = yaml.loadAs(servletRequest.getParameter("yaml"), PexGroups.class);
+            else
+                throw new IllegalArgumentException("You didn't specify a permissions file type!");
+        }
         else
-            convert = yaml.loadAs(servletRequest.getParameter("yaml"), PexGroups.class);;
+            throw new IllegalArgumentException("You didn't specify a permissions file type!");
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ZipOutputStream zos = new ZipOutputStream(baos);
