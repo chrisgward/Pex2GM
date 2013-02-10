@@ -2,13 +2,15 @@ body {
     font-family: sans-serif;
     font-size: 0.9em;
     height: 100%;
-    background-color: #0000AA;
-
+    background-size: auto, 100%;
+    background-position: center;
+    background-attachment: fixed;
+    background: url('http://team.mudkipz.ws/wp-content/themes/twentytwelve/mudkip.png') no-repeat;
 }
 
 div#wrap {
     width: 1000px;
-    background-color: #FFF;
+    background-color: rgba(255, 255, 255, 0.9);
     margin-left: auto;
     margin-right: auto;
     padding: 10px 10px 10px 10px;
@@ -24,7 +26,6 @@ h1 {
     padding-top: 0px;
     font-size: 50px;
     margin-bottom: 0px;
-
 }
 
 h2 {
