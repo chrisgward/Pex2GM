@@ -67,13 +67,25 @@
             </p>
             <form id="pex" method="post" action="/upload/">
                 Please copy and paste in your PermissionsEx permissions.yml into the box below and press submit
-                <textarea class="text-full" name="yaml"></textarea>
+                <table>
+                    <tr>
+                        <td>
+                            <textarea class="text-full" name="yaml"></textarea>
+                        </td>
+                    </tr>
+                </table>
                 <input type="hidden" name="method" value="pex"/>
                 <input type="submit" value="Submit">
             </form>
             <form id="bperms" method="post" action="/upload/" style="display: none">
                 Please copy and paste in your BPermissions groups.yml into the box below and press submit
-                <textarea class="text-full" name="yaml"></textarea>
+                <table>
+                    <tr>
+                        <td>
+                            <textarea class="text-full" name="yaml"></textarea>
+                        </td>
+                    </tr>
+                </table>
                 <input type="hidden" name="method" value="bperms"/>
                 <input type="submit" value="Submit">
             </form>
