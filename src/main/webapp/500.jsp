@@ -1,11 +1,14 @@
 <%@ page import="java.io.StringWriter" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% if(request.getAttribute("javax.servlet.error.exception") == null)
-    response.sendRedirect("/");
-Throwable t = (Throwable) request.getAttribute("javax.servlet.error.exception");
-    boolean tab = t.getMessage().contains("\\t");
-    %>
+<%
+    if(request.getAttribute("javax.servlet.error.exception") == null) {
+        response.sendRedirect("/");
+        return;
+    }
+    Throwable t = (Throwable) request.getAttribute("javax.servlet.error.exception");
+    boolean tab = t.getMessage() != null && t.getMessage().contains("\\t");
+%>
 <html>
 <head>
     <title>Error!</title>
@@ -58,7 +61,8 @@ Throwable t = (Throwable) request.getAttribute("javax.servlet.error.exception");
                 StringWriter writer = new StringWriter();
                 t.printStackTrace(new PrintWriter(writer));
             %>
-            <pre><%= t.getClass().getName() %> was thrown <%= writer %></pre>
+            <pre><%= t.getClass().getName() %> was thrown
+<%= writer %></pre>
         <% } %>
     </div>
 </body>
