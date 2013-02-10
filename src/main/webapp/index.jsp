@@ -26,16 +26,18 @@
         </script>
     </head>
     <body>
-        <h1>Pex2GM Converter</h1>
-        1. Paste in your PermissionsEx permissions.yml and press submit.<br/>
-        2. ???<br/>
-        3. Profit!
-        <form method="post" action="/upload/">
-            <textarea id="yaml" name="yaml"></textarea>
-            <input type="submit" value="Submit">
-        </form>
-
-        <p><a href="https://github.com/chrisgward/Pex2GM">Source Code</a> - Written by Chris Ward</p>
-        <p>If you are having trouble with this website, please let me know through email <a href="mailto:chris@chrisgward.com">here</a>.</p>
+        <div id="wrap">
+            <h1>Pex2GM Converter</h1>
+            Simply paste in your PermissionsEx permissions.yml file and press submit.<br/>
+            Your file will be converted to GroupManager standards. This includes users, groups and global groups.<br/>
+            If you find a bug, please report it by either using the button on the error page or by opening a ticket on <a href="https://github.com/chrisgward/Pex2GM">GitHub</a>.<br/>
+            <br/>
+            <form method="post" action="/upload/">
+                <textarea id="yaml" name="yaml"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+            <br/>
+            <small><a href="https://github.com/chrisgward/Pex2GM">Source Code</a> - Written by Chris Ward</small>
+        </div>
     </body>
 </html>
