@@ -2,10 +2,8 @@ body {
     font-family: sans-serif;
     font-size: 0.9em;
     height: 100%;
-    background-size: auto, 100%;
-    background-position: center;
-    background-attachment: fixed;
-    background: url('http://team.mudkipz.ws/wp-content/themes/twentytwelve/mudkip.png') no-repeat;
+    background-size: auto 100%;
+    background: url('/mudkip.png') no-repeat fixed center;
 }
 
 div#wrap {
@@ -37,6 +35,8 @@ textarea {
     width: 987px;
     margin-right: 3px;
     height: 300px;
+    opacity: 0.5;
+    color: rgba(0, 0, 0, 1);
 }
 
 pre {
