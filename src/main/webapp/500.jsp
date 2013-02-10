@@ -46,7 +46,7 @@ Throwable t = (Throwable) request.getAttribute("javax.servlet.error.exception");
                 t.printStackTrace(new PrintWriter(writer));%>
             <pre><%= t.getClass().getName() %> was thrown <%= writer %></pre>
         <% } else { %>
-            <p>Congratulations, you broke Pex2GM :D This is usually caused by malformed YML code. Please make sure that your code is valid using <a href="http://yaml-online-parser.appspot.com/">a yaml parser</a> and try again.<br/>
+            <p>Congratulations, you broke Pex2GM :D This is usually caused by malformed YML code. Please make sure that your code is valid using <a href="http://yaml-online-parser.appspot.com/">a yaml parser</a> and try again. Also, make sure that you selected the correct permissions input type next to the submit button.<br/>
             <h2>Error Message:</h2>
             <pre><%= t.getMessage() %></pre></p>
         <p>Want to try again?

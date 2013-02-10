@@ -30,7 +30,7 @@
             <h1>Pex2GM Converter</h1>
             Simply paste in your PermissionsEx permissions.yml file and press submit.<br/>
             Your file will be converted to GroupManager standards. This includes users, groups and global groups.<br/>
-            If you find a bug, please report it by either using the button on the error page or by opening a ticket on <a href="https://github.com/chrisgward/Pex2GM">GitHub</a>.<br/>
+            If you find a bug, please report it by sending me an email at <a href="mailto:chris+pex2gm@chrisgward.com">chris+pex2gm@chrisgward.com</a>.<br/>
             <br/>
             <form method="post" action="/upload/">
                 <textarea id="yaml" name="yaml"></textarea>
