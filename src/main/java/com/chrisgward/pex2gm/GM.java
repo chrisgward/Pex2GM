@@ -13,7 +13,7 @@ public class GM
 {
 	public static class GlobalGroups {
 		public static class Group {
-			@Getter @Setter String[] permissions;
+			@Getter @Setter String[] permissions = new String[0];
 		}
 		@Getter @Setter Map<String,Group> groups = new HashMap<String, Group>();
 	}
@@ -44,13 +44,18 @@ public class GM
 
 	public static class Users {
 		public static class User {
+            public User() {
+                info.put("prefix", "");
+                info.put("build", true);
+                info.put("suffix", "");
+            }
 			@Getter @Setter String[] permissions = new String[0];
-			@Getter @Setter String group;
+			@Getter @Setter String group = "";
 			@Getter @Setter String[] subgroups = new String[0];
 			@Getter @Setter Map<String, Object> info = new HashMap<String, Object>();
 		}
 
-		@Getter @Setter public Map<String, User> users;
+		@Getter @Setter public Map<String, User> users = new HashMap<String, User>();
 	}
 
 	public static class Config {
@@ -70,7 +75,7 @@ public class GM
 			}
 
 			public static class Logging {
-				@Getter @Setter Level level = Level.INFO;
+				@Getter @Setter String level = "INFO";
 			}
 
 			@Getter @Setter Config_ config = new Config_();

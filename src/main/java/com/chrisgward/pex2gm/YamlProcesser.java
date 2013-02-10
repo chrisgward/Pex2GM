@@ -36,7 +36,13 @@ public class YamlProcesser implements Servlet
 		DumperOptions options = new DumperOptions();
 		options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
 		Yaml yaml = new Yaml(options);
-		Converter convert = yaml.loadAs(servletRequest.getParameter("yaml"), PexGroups.class);
+        String method = servletRequest.getParameter("method");
+        Converter convert;
+
+        if(method != null && method.equalsIgnoreCase("privs") || method.equalsIgnoreCase("privileges"))
+            convert = yaml.loadAs(servletRequest.getParameter("yaml"), PrivilegesGroups.class);
+        else
+            convert = yaml.loadAs(servletRequest.getParameter("yaml"), PexGroups.class);;
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ZipOutputStream zos = new ZipOutputStream(baos);

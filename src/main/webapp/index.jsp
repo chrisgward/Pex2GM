@@ -34,6 +34,10 @@
             <br/>
             <form method="post" action="/upload/">
                 <textarea id="yaml" name="yaml"></textarea>
+                <select name="method">
+                    <option value="pex">PermissionsEx</option>
+                    <option value="privileges">Privileges</option>
+                </select>
                 <input type="submit" value="Submit">
             </form>
             <br/>
