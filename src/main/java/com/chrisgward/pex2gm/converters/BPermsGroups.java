@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PrivilegesGroups implements Converter {
+public class BPermsGroups implements Converter {
     public Map<String, GM.Users> generateUsers() {
         GM.Users users = new GM.Users();
         for(Map.Entry<String, List<String>> entry : getGroups().entrySet()) {

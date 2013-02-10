@@ -36,7 +36,7 @@
                 <textarea id="yaml" name="yaml"></textarea>
                 <select name="method">
                     <option value="pex">PermissionsEx</option>
-                    <option value="privileges">Privileges</option>
+                    <option value="bperms">BPermissions</option>
                 </select>
                 <input type="submit" value="Submit">
             </form>

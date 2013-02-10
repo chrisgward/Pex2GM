@@ -1,8 +1,8 @@
 package com.chrisgward.pex2gm;
 
+import com.chrisgward.pex2gm.converters.BPermsGroups;
 import com.chrisgward.pex2gm.converters.Converter;
 import com.chrisgward.pex2gm.converters.PexGroups;
-import com.chrisgward.pex2gm.converters.PrivilegesGroups;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
@@ -36,8 +36,8 @@ public class YamlProcesser implements Servlet
         String method = servletRequest.getParameter("method");
         Converter convert;
 
-        if(method != null && method.equalsIgnoreCase("privs") || method.equalsIgnoreCase("privileges"))
-            convert = yaml.loadAs(servletRequest.getParameter("yaml"), PrivilegesGroups.class);
+        if(method != null && method.equalsIgnoreCase("bperms") || method.equalsIgnoreCase("bpermissions"))
+            convert = yaml.loadAs(servletRequest.getParameter("yaml"), BPermsGroups.class);
         else
             convert = yaml.loadAs(servletRequest.getParameter("yaml"), PexGroups.class);;
 
