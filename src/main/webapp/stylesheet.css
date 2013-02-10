@@ -35,8 +35,10 @@ textarea {
     width: 987px;
     margin-right: 3px;
     height: 300px;
-    opacity: 0.5;
-    color: rgba(0, 0, 0, 1);
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 3px;
+    border-color: #aaa;
+
 }
 
 pre {
