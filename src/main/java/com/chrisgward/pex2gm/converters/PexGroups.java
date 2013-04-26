@@ -33,7 +33,7 @@ public class PexGroups implements Converter {
                 if (pexuser.getValue().getWorlds() != null && pexuser.getValue().getWorlds().get(world) != null && pexuser.getValue().getWorlds().get(world).getPermissions() != null)
                     user.setPermissions(pexuser.getValue().getWorlds().get(world).getPermissions());
                 user.setGroup(pexuser.getValue().getGroup() == null || pexuser.getValue().getGroup().length == 0 ? dfault : pexuser.getValue().getGroup()[0]);
-                if (pexuser.getValue().getGroup() != null)
+                if (pexuser.getValue().getGroup() != null && pexuser.getValue().getGroup().length > 1)
                     user.setSubgroups(Arrays.copyOfRange(pexuser.getValue().getGroup(), 1, pexuser.getValue().getGroup().length));
                 if (pexuser.getValue().getPrefix() != null)
                     user.getInfo().put("prefix", pexuser.getValue().getPrefix());
