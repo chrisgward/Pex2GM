@@ -32,7 +32,7 @@ public class PexGroups implements Converter {
                 GM.Users.User user = new GM.Users.User();
                 if (pexuser.getValue().getWorlds() != null && pexuser.getValue().getWorlds().get(world) != null && pexuser.getValue().getWorlds().get(world).getPermissions() != null)
                     user.setPermissions(pexuser.getValue().getWorlds().get(world).getPermissions());
-                user.setGroup(pexuser.getValue().getGroup() == null ? dfault : pexuser.getValue().getGroup()[0]);
+                user.setGroup(pexuser.getValue().getGroup() == null || pexuser.getValue().getGroup().length == 0 ? dfault : pexuser.getValue().getGroup()[0]);
                 if (pexuser.getValue().getGroup() != null)
                     user.setSubgroups(Arrays.copyOfRange(pexuser.getValue().getGroup(), 1, pexuser.getValue().getGroup().length));
                 if (pexuser.getValue().getPrefix() != null)
