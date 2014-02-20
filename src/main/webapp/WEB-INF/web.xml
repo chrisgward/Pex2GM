@@ -7,7 +7,7 @@
 
     <servlet>
         <servlet-name>Upload</servlet-name>
-        <servlet-class>com.chrisgward.pex2gm.YamlProcesser</servlet-class>
+        <servlet-class>com.chrisgward.pex2gm.YamlProcessor</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -17,7 +17,7 @@
 
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
-        <location>/500.jsp</location>
+        <location>/WEB-INF/500.jsp</location>
     </error-page>
 
 </web-app>

@@ -1,8 +1,7 @@
 package com.chrisgward.pex2gm.converters;
 
 import com.chrisgward.pex2gm.GM;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.yaml.snakeyaml.Yaml;
 
 import java.util.ArrayList;
@@ -18,42 +17,28 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class PrivilegesConverter implements Converter {
+	@Data
     public static class Groups {
+	    @Data
         public static class Group {
-            @Getter
-            @Setter
-            private Integer rank;
-            @Getter
-            @Setter
+            private int rank;
             private List<String> permissions;
-            @Getter
-            @Setter
             private List<String> inheritance;
-            @Getter
-            @Setter
             private Map<String, List<String>> worlds;
         }
 
-        @Getter
-        @Setter
         private Map<String, Group> groups;
     }
 
+	@Data
     public static class Users {
+	    @Data
         public static class User {
-            @Getter
-            @Setter
             private String group;
-            @Getter
-            @Setter
             private List<String> permissions;
-            @Getter
-            @Setter
             private Map<String, List<String>> worlds;
         }
 
-        @Getter
-        @Setter
         private Map<String, User> users;
     }
 
@@ -66,8 +51,8 @@ public class PrivilegesConverter implements Converter {
     }
 
     public Map<String, GM.Users> generateUsers() {
-        Map<String, GM.Users> users = new HashMap<String, GM.Users>();
-        List<String> worldlist = new ArrayList<String>();
+        Map<String, GM.Users> users = new HashMap<>();
+        List<String> worldlist = new ArrayList<>();
         String dfault = null;
         for (Map.Entry<String, Groups.Group> group : groups.getGroups().entrySet()) {
             if (group.getValue().getRank() == 1)
@@ -84,7 +69,7 @@ public class PrivilegesConverter implements Converter {
             GM.Users gmusers = new GM.Users();
             for (Map.Entry<String, Users.User> user : this.users.getUsers().entrySet()) {
                 GM.Users.User gmuser = new GM.Users.User();
-                ArrayList<String> list = new ArrayList<String>();
+                ArrayList<String> list = new ArrayList<>();
                 if (user.getValue().getPermissions() != null)
                     list.addAll(user.getValue().getPermissions());
                 if (user.getValue().getWorlds() != null && user.getValue().getWorlds().get(s) != null)
@@ -97,8 +82,9 @@ public class PrivilegesConverter implements Converter {
         return users;
     }
 
+	GM.Config config = new GM.Config();
     public GM.Config generateConfig() {
-        return new GM.Config();
+        return config;
     }
 
     public GM.GlobalGroups generateGlobalGroups() {
@@ -112,8 +98,8 @@ public class PrivilegesConverter implements Converter {
     }
 
     public Map<String, GM.Groups> generateGroups() {
-        Map<String, GM.Groups> groups = new HashMap<String, GM.Groups>();
-        List<String> worldlist = new ArrayList<String>();
+        Map<String, GM.Groups> groups = new HashMap<>();
+        List<String> worldlist = new ArrayList<>();
         String dfault = null;
         for (Map.Entry<String, Groups.Group> group : this.groups.getGroups().entrySet()) {
             if (group.getValue().getRank() == 1)
@@ -133,7 +119,7 @@ public class PrivilegesConverter implements Converter {
                 GM.Groups.Group gmgroup = new GM.Groups.Group();
                 if (group.getKey().equalsIgnoreCase(dfault))
                     gmgroup.setDefault(true);
-                ArrayList<String> inheritence = new ArrayList<String>();
+                ArrayList<String> inheritence = new ArrayList<>();
                 if (group.getValue().getInheritance() != null)
                     inheritence.addAll(group.getValue().getInheritance());
                 inheritence.add("g:" + group.getKey());

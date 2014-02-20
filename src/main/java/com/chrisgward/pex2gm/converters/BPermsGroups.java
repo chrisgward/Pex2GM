@@ -1,13 +1,13 @@
 package com.chrisgward.pex2gm.converters;
 
 import com.chrisgward.pex2gm.GM;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Data
 public class BPermsGroups implements Converter {
     public Map<String, GM.Users> generateUsers() {
         GM.Users users = new GM.Users();
@@ -16,7 +16,7 @@ public class BPermsGroups implements Converter {
             user.setPermissions(entry.getValue().toArray(new String[entry.getValue().size()]));
             users.getUsers().put(entry.getKey(), user);
         }
-        HashMap<String, GM.Users> output = new HashMap<String, GM.Users>();
+        HashMap<String, GM.Users> output = new HashMap<>();
         output.put("world", users);
         return output;
     }
@@ -48,15 +48,11 @@ public class BPermsGroups implements Converter {
             group.setInheritance(new String[]{"g:" + entry.getKey()});
             groups.getGroups().put(entry.getKey(), group);
         }
-        HashMap<String, GM.Groups> output = new HashMap<String, GM.Groups>();
+        HashMap<String, GM.Groups> output = new HashMap<>();
         output.put("world", groups);
         return output;
     }
 
-    @Getter
-    @Setter
-    HashMap<String, List<String>> groups;
-    @Getter
-    @Setter
-    HashMap<String, List<String>> players;
+    Map<String, List<String>> groups;
+    Map<String, List<String>> players;
 }

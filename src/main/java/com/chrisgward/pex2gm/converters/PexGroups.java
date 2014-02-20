@@ -1,15 +1,18 @@
 package com.chrisgward.pex2gm.converters;
 
 import com.chrisgward.pex2gm.GM;
+import lombok.AccessLevel;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.*;
 
+@Data
 public class PexGroups implements Converter {
     public Map<String, GM.Users> generateUsers() {
-        Map<String, GM.Users> users = new HashMap<String, GM.Users>();
-        ArrayList<String> worldList = new ArrayList<String>();
+        Map<String, GM.Users> users = new HashMap<>();
+        ArrayList<String> worldList = new ArrayList<>();
         String dfault = null;
         for (Map.Entry<String, Group> pexgroup : getGroups().entrySet()) {
             if (pexgroup.getValue().getDefault()) {
@@ -27,7 +30,7 @@ public class PexGroups implements Converter {
         for (String world : worldList) {
             GM.Users gmusers = new GM.Users();
 
-            Map<String, GM.Users.User> groupList = new HashMap<String, GM.Users.User>();
+            Map<String, GM.Users.User> groupList = new HashMap<>();
             for (Map.Entry<String, User> pexuser : getUsers().entrySet()) {
                 GM.Users.User user = new GM.Users.User();
                 if (pexuser.getValue().getWorlds() != null && pexuser.getValue().getWorlds().get(world) != null && pexuser.getValue().getWorlds().get(world).getPermissions() != null)
@@ -39,7 +42,7 @@ public class PexGroups implements Converter {
                     user.getInfo().put("prefix", pexuser.getValue().getPrefix());
                 if (pexuser.getValue().getSuffix() != null)
                     user.getInfo().put("suffix", pexuser.getValue().getSuffix());
-                ArrayList<String> inheritance = new ArrayList<String>();
+                ArrayList<String> inheritance = new ArrayList<>();
                 groupList.put(pexuser.getKey(), user);
             }
             gmusers.setUsers(groupList);
@@ -51,7 +54,7 @@ public class PexGroups implements Converter {
     public GM.Config generateConfig() {
         GM.Config config = new GM.Config();
 
-        List<String> mirrorList = new ArrayList<String>();
+        List<String> mirrorList = new ArrayList<>();
         mirrorList.add("users");
         mirrorList.add("groups");
 
@@ -62,7 +65,7 @@ public class PexGroups implements Converter {
             if (world.getInheritance() == null)
                 continue;
             if (!worldMirrors.containsKey(world.getInheritance())) {
-                Map<String, String[]> newworld = new HashMap<String, String[]>();
+                Map<String, String[]> newworld = new HashMap<>();
                 newworld.put(worldName, mirrorList.toArray(new String[mirrorList.size()]));
                 worldMirrors.put(world.getInheritance()[0], newworld);
             } else {
@@ -75,7 +78,7 @@ public class PexGroups implements Converter {
 
     public GM.GlobalGroups generateGlobalGroups() {
         GM.GlobalGroups groups = new GM.GlobalGroups();
-        Map<String, GM.GlobalGroups.Group> groupList = new HashMap<String, GM.GlobalGroups.Group>();
+        Map<String, GM.GlobalGroups.Group> groupList = new HashMap<>();
         for (Map.Entry<String, Group> pexgroup : getGroups().entrySet()) {
             GM.GlobalGroups.Group group = new GM.GlobalGroups.Group();
             group.setPermissions(pexgroup.getValue().getPermissions());
@@ -87,8 +90,8 @@ public class PexGroups implements Converter {
 
     public Map<String, GM.Groups> generateGroups() {
 
-        Map<String, GM.Groups> groups = new HashMap<String, GM.Groups>();
-        ArrayList<String> worldList = new ArrayList<String>();
+        Map<String, GM.Groups> groups = new HashMap<>();
+        ArrayList<String> worldList = new ArrayList<>();
         for (Map.Entry<String, Group> pexgroup : getGroups().entrySet())
             for (String s : pexgroup.getValue().getWorlds().keySet())
                 if (!worldList.contains(s))
@@ -101,7 +104,7 @@ public class PexGroups implements Converter {
         for (String world : worldList) {
             GM.Groups gmgroups = new GM.Groups();
 
-            Map<String, GM.Groups.Group> groupList = new HashMap<String, GM.Groups.Group>();
+            Map<String, GM.Groups.Group> groupList = new HashMap<>();
             for (Map.Entry<String, Group> pexgroup : getGroups().entrySet()) {
                 GM.Groups.Group group = new GM.Groups.Group();
                 if (pexgroup.getValue().getWorlds().get(world) != null) {
@@ -112,10 +115,9 @@ public class PexGroups implements Converter {
                 if (pexgroup.getValue().getSuffix() != null)
                     group.getInfo().put("suffix", pexgroup.getValue().getSuffix());
                 group.getInfo().put("build", pexgroup.getValue().isBuild());
-                ArrayList<String> inheritance = new ArrayList<String>();
+                ArrayList<String> inheritance = new ArrayList<>();
                 if (pexgroup.getValue().getInheritance() != null)
-                    for (String s : pexgroup.getValue().getInheritance())
-                        inheritance.add(s);
+	                Collections.addAll(inheritance, pexgroup.getValue().getInheritance());
                 inheritance.add("g:" + pexgroup.getKey());
                 group.setInheritance(inheritance.toArray(new String[inheritance.size()]));
                 group.setDefault(pexgroup.getValue().getDefault());
@@ -127,97 +129,61 @@ public class PexGroups implements Converter {
         return groups;
     }
 
+	@Data
     public static class Group {
+		@Data
         public static class World {
-            @Getter
-            @Setter
             String[] permissions;
         }
 
-        @Getter
-        @Setter
         String[] permissions;
-        @Getter
-        @Setter
         String[] inheritance;
-        @Getter
-        @Setter
-        Map<String, World> worlds = new HashMap<String, World>();
-        @Getter
-        @Setter
+        Map<String, World> worlds = new HashMap<>();
         Map<String, Object> options;
-        @Getter
-        @Setter
         String prefix;
-        @Getter
-        @Setter
         String suffix;
-        boolean dfault = false;
-        @Getter
-        @Setter
         boolean build = false;
 
         public void setInfo(Map<String, Object> info) {
-            throw new RuntimeException("The info: block is not part of a PermissionsEx file. It belongs to GroupManager. This means your file should already be compatible with GroupManager. ");
+            throw new RuntimeException("The info: block is not part of a PermissionsEx file. It belongs to GroupManager. This means your file is either seriously malformed or already a GroupManager file.");
         }
 
+		@Getter(AccessLevel.NONE) @Setter(AccessLevel.NONE) boolean dfault = false;
         public void setDefault(boolean dfault) {
             this.dfault = dfault;
         }
-
         public boolean getDefault() {
             return dfault;
         }
     }
 
+	@Data
     public static class User {
-        @Getter
-        @Setter
         String[] permissions;
-        @Getter
-        @Setter
         String prefix;
-        @Getter
-        @Setter
         String suffix;
-        @Getter
-        @Setter
         String[] group;
-        @Getter
-        @Setter
         Map<String, World> worlds;
-        @Getter
-        @Setter
         Map<String, Object> options;
 
         public void setInfo(Map<String, Object> info) {
-            throw new RuntimeException("The info: block is not part of a PermissionsEx file. It belongs to GroupManager. This means your file should already be compatible with GroupManager. ");
+	        throw new RuntimeException("The info: block is not part of a PermissionsEx file. It belongs to GroupManager. This means your file is either seriously malformed or already a GroupManager file.");
         }
 
+		@Data
         public static class World {
-            @Getter
-            @Setter
             String[] permissions;
-            @Getter
-            @Setter
             String[] groups;
         }
     }
 
+	@Data
     public static class World {
-        @Getter
-        @Setter
         public String[] inheritance;
     }
 
-    @Getter
-    @Setter
-    Map<String, Group> groups = new HashMap<String, Group>();
-    @Getter
-    @Setter
-    Map<String, User> users = new HashMap<String, User>();
-    @Getter
-    @Setter
-    Map<String, World> worlds = new HashMap<String, World>();
+    Map<String, Group> groups = new HashMap<>();
+    Map<String, User> users = new HashMap<>();
+    Map<String, World> worlds = new HashMap<>();
 
 }

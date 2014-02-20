@@ -1,13 +1,8 @@
 <%@ page import="java.io.StringWriter" %>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isErrorPage="true" %>
 <%
-    if(request.getAttribute("javax.servlet.error.exception") == null) {
-        response.sendRedirect("/");
-        return;
-    }
-    Throwable t = (Throwable) request.getAttribute("javax.servlet.error.exception");
-    boolean tab = t.getMessage() != null && t.getMessage().contains("\\t");
+    boolean tab = exception.getMessage() != null && exception.getMessage().contains("\\t");
 %>
 <html>
 <head>
@@ -46,12 +41,12 @@
             <p>&nbsp</p>
             <h2>Error Stack:</h2>
             <%StringWriter writer = new StringWriter();
-                t.printStackTrace(new PrintWriter(writer));%>
-            <pre><%= t.getClass().getName() %> was thrown <%= writer %></pre>
+                exception.printStackTrace(new PrintWriter(writer));%>
+            <pre><%= exception.getClass().getName() %> was thrown <%= writer %></pre>
         <% } else { %>
-            <p>Congratulations, you broke Convert2GM :D This is usually caused by malformed YML code. Please make sure that your code is valid using <a href="http://yaml-online-parser.appspot.com/">a yaml parser</a> and try again. Also, make sure that you selected the correct permissions input type next to the submit button.<br/>
+            <p>Convert2GM could not convert your permissions setup. This is usually caused by malformed YAML. Please make sure that your code is valid using <a href="http://yaml-online-parser.appspot.com/">a yaml parser</a> and try again. Also, make sure that you selected the correct permissions input type next to the submit button.<br/>
             <h2>Error Message:</h2>
-            <pre><%= t.getMessage() %></pre></p>
+            <pre><%= exception.getMessage() %></pre></p>
 
             <p>If you are getting this error regularly or do not understand what it means, please send an email with the error stack below and your yaml file to <a href="mailto:chris+convert2gm@chrisgward.com">chris+convert2gm@chrisgward.com</a> and I will get back to you within the next 2-3 days.</p>
             </p>
@@ -59,9 +54,9 @@
             <h2>Error Stack:</h2>
             <%
                 StringWriter writer = new StringWriter();
-                t.printStackTrace(new PrintWriter(writer));
+                exception.printStackTrace(new PrintWriter(writer));
             %>
-            <pre><%= t.getClass().getName() %> was thrown
+            <pre><%= exception.getClass().getName() %> was thrown
 <%= writer %></pre>
         <% } %>
     </div>

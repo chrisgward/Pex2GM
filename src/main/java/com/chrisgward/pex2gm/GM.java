@@ -1,5 +1,7 @@
 package com.chrisgward.pex2gm;
 
+import lombok.AccessLevel;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,21 +9,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GM {
+	@Data
     public static class GlobalGroups {
+		@Data
         public static class Group {
-            @Getter @Setter String[] permissions = new String[0];
+            String[] permissions = new String[0];
         }
 
-        @Getter
-        @Setter
-        Map<String, Group> groups = new HashMap<String, Group>();
+        Map<String, Group> groups = new HashMap<>();
     }
 
+	@Data
     public static class Groups {
+		@Data
         public static class Group {
-            @Getter
-            @Setter
-            Map<String, Object> info = new HashMap<String, Object>();
+            Map<String, Object> info = new HashMap<>();
 
             public Group() {
                 info.put("prefix", "");
@@ -29,30 +31,24 @@ public class GM {
                 info.put("suffix", "");
             }
 
-            Boolean dfault = false;
-
+			@Getter(AccessLevel.NONE) @Setter(AccessLevel.NONE) boolean dfault = false;
             public boolean getDefault() {
                 return dfault;
             }
-
             public void setDefault(boolean dfault) {
                 this.dfault = dfault;
             }
 
-            @Getter
-            @Setter
             String[] permissions = new String[0];
-            @Getter
-            @Setter
             String[] inheritance = new String[0];
         }
 
-        @Getter
-        @Setter
-        Map<String, Group> groups = new HashMap<String, Group>();
+        Map<String, Group> groups = new HashMap<>();
     }
 
+	@Data
     public static class Users {
+		@Data
         public static class User {
             public User() {
                 info.put("prefix", "");
@@ -60,83 +56,56 @@ public class GM {
                 info.put("suffix", "");
             }
 
-            @Getter
-            @Setter
             String[] permissions = new String[0];
-            @Getter
-            @Setter
             String group = "";
-            @Getter
-            @Setter
             String[] subgroups = new String[0];
-            @Getter
-            @Setter
-            Map<String, Object> info = new HashMap<String, Object>();
+            Map<String, Object> info = new HashMap<>();
         }
 
-        @Getter
-        @Setter
-        public Map<String, User> users = new HashMap<String, User>();
+        public Map<String, User> users = new HashMap<>();
     }
 
+	@Data
     public static class Config {
+	    @Data
         public static class Settings {
+
+		    @lombok.Data
             public static class Config_ {
-                @Getter
-                @Setter
-                Boolean opOverrides = true;
-                @Getter
-                @Setter
-                Boolean validate_toggle = true;
-                @Getter
-                @Setter
-                Boolean allow_commandblocks = false;
+                boolean opOverrides = true;
+                boolean validate_toggle = true;
+                boolean allow_commandblocks = false;
             }
 
+		    @lombok.Data
             public static class Data {
+			    @lombok.Data
                 public static class Save {
-                    @Getter
-                    @Setter
-                    Integer minutes = 10;
-                    @Getter
-                    @Setter
-                    Integer hours = 24;
+                    int minutes = 10;
+                    int hours = 24;
                 }
 
-                @Getter
-                @Setter
                 Save save = new Save();
             }
 
+		    @lombok.Data
             public static class Logging {
-                @Getter
-                @Setter
                 String level = "INFO";
             }
 
-            @Getter
-            @Setter
             Config_ config = new Config_();
-            @Getter
-            @Setter
             Data data = new Data();
-            @Getter
-            @Setter
             Logging logging = new Logging();
-            @Getter
-            @Setter
-            Map<String, Map<String, String[]>> mirrors = new HashMap<String, Map<String, String[]>>();
+            Map<String, Map<String, String[]>> mirrors = new HashMap<>();
 
             public Settings() {
-                Map<String, String[]> mirrorlist = new HashMap<String, String[]>();
+                Map<String, String[]> mirrorlist = new HashMap<>();
                 mirrorlist.put("world_nether", new String[]{"users", "groups"});
                 mirrorlist.put("world_the_end", new String[]{"users", "groups"});
                 mirrors.put("world", mirrorlist);
             }
         }
 
-        @Getter
-        @Setter
         Settings settings = new Settings();
     }
 }
